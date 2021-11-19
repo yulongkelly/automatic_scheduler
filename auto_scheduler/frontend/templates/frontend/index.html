@@ -8,7 +8,10 @@
       name="description"
       content="Web site created using create-react-app"
     />
+    {% load static %}
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}"/>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -38,8 +41,7 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script src="{% static "frontend/main.js" %}"></script>
   </body>
   <!-- grap the bundle that contains all react code -->
-  {% load static %}
-    <script src="{% static "frontend/main.js" %}"></script>
 </html>

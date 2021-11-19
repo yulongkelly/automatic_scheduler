@@ -1,12 +1,12 @@
 import React from "react";
 
-import { ButtonContainer, CommonButton, HomePageContainer } from "./style";
+import { ButtonContainer, CommonButton, HomePageContainer, Title} from "./style";
 
 class HomePage extends React.Component {
   render() {
     return (
       <HomePageContainer>
-        <h1>Welcome to Auto Scheduler</h1>
+        <Title>Welcome to Auto Scheduler</Title>
         <ButtonContainer>
           <CommonButton>Sign Up</CommonButton>
           <CommonButton>Log In</CommonButton>
