@@ -1,0 +1,3 @@
+[pytest11]
+snapshot = pytest_snapshot.plugin
+
