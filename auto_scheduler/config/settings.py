@@ -84,10 +84,13 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE': 'djongo',
-        'NAME': 'auto_scheduler',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'auto_scheduler_backend',
+        'USER': 'postgres',
+        'PASSWORD': '123456wu',
         # 'HOST': env('DB_URL') or 'mongodb://localhost:27017/yelp-camp',
-        'HOST': 'mongodb://localhost:27017/yelp-camp'
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
