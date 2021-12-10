@@ -26,5 +26,5 @@ export const CommonButton = styled.button`
 `;
 
 export const Title = styled.h1`
-  font-size: 50px;
+  font-size: 60px;
 `;
