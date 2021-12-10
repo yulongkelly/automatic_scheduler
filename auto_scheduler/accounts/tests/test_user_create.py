@@ -19,7 +19,7 @@ user = {
 }
 
 # Create your tests here.
-class TestAuth(
+class UserCreateViewTest(
     APITestCase, 
     assertions.StatusCodeAssertionsMixin, 
     assertions.InstanceAssertionsMixin,
