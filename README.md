@@ -15,4 +15,9 @@ Please run
 python -m pip install --upgrade pip setuptools wheel
 ```
 
+### Run Tests
+```
+cd auto_scheduler
+pytest manage.py pytest accounts/tests/<test file>
+```
 
