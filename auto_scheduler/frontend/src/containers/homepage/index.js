@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ButtonContainer, CommonButton, HomePageContainer, Title} from "./style";
+import { ButtonContainer, ButtonLink, HomePageContainer, Title, LinkText} from "./style";
 
 class HomePage extends React.Component {
   render() {
@@ -8,8 +8,8 @@ class HomePage extends React.Component {
       <HomePageContainer>
         <Title>Welcome to Auto Scheduler</Title>
         <ButtonContainer>
-          <CommonButton onClick={}>Sign Up</CommonButton>
-          <CommonButton>Log In</CommonButton>
+          <ButtonLink href="/signup"><LinkText>Sign Up</LinkText></ButtonLink>
+          <ButtonLink><LinkText padding={"0 55px"}>Log In</LinkText></ButtonLink>
         </ButtonContainer>
       </HomePageContainer>
     );

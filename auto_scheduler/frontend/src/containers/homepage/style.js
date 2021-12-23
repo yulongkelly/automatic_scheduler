@@ -16,13 +16,21 @@ export const ButtonContainer = styled.div`
   margin-bottom: 300px;
 `;
 
-export const CommonButton = styled.button`
+export const ButtonLink = styled.a`
   margin: 0 30px;
   font-size: 20px;
-  width: 200px;
   padding: 10px 10px;
-  background-color: transparent;
   border-radius: 10px;
+  border: 1px solid;
+  text-decoration: none;
+  &:visited {
+    color: black;
+  }
+`;
+
+export const LinkText = styled.h5`
+  display: inline;
+  padding: ${props => props.padding ? props.padding: "0 50px"};
 `;
 
 export const Title = styled.h1`
