@@ -2,9 +2,13 @@
 
 ### How to run the program
 ```
+# terminal 1
+cd auto_scheduler
 pip install -r requirements.txt
-$auto_scheduler/auto_scheduler python manage.py runserver # terminal 1
-$auto_scheduler/auto_scheduler/frontend npm run dev # terminal 2
+python manage.py runserver
+# terminal 2
+cd auto_scheduler/frontend
+npm run dev
 ```
 If you see something like:
 ```
