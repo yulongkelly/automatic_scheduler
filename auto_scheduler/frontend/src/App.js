@@ -1,10 +1,21 @@
 import React from 'react'
-import Homepage from './components/homepage'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+import Home from './containers/homepage'
+import Signup from './containers/auth/signup'
+import Layout from './hoc/layout';
 
 function App() {
   return (
     <div className="App">
-      <Homepage/>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route exact path='/' element={<Home/>} />
+              <Route exact path='/signup' element={<Signup/>} />
+            </Routes>
+          </Layout>
+        </Router>
     </div>
   );
 }

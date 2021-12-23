@@ -8,7 +8,7 @@ class HomePage extends React.Component {
       <HomePageContainer>
         <Title>Welcome to Auto Scheduler</Title>
         <ButtonContainer>
-          <CommonButton>Sign Up</CommonButton>
+          <CommonButton onClick={}>Sign Up</CommonButton>
           <CommonButton>Log In</CommonButton>
         </ButtonContainer>
       </HomePageContainer>
