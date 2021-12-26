@@ -9,7 +9,7 @@ class HomePage extends React.Component {
         <Title>Welcome to Auto Scheduler</Title>
         <ButtonContainer>
           <ButtonLink href="/signup"><LinkText>Sign Up</LinkText></ButtonLink>
-          <ButtonLink><LinkText padding={"0 55px"}>Log In</LinkText></ButtonLink>
+          <ButtonLink href="/login"><LinkText padding={"0 55px"}>Log In</LinkText></ButtonLink>
         </ButtonContainer>
       </HomePageContainer>
     );
