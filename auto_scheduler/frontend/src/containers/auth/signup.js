@@ -1,6 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-import { Form, InputContainer } from "./style";
+import { SIGNUP } from "../../actions";
+import { Container, Form, InputContainer, Error } from "./style";
 
 class Signup extends React.Component {
   constructor() {
@@ -29,14 +32,7 @@ class Signup extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
-    console.log(
-      this.state.formData.email,
-      this.state.formData.first_name,
-      this.state.formData.last_name,
-      this.state.formData.password,
-      this.state.formData.re_password
-    );
+    this.props.signup(this.state.formData);
   };
 
   render() {
@@ -47,8 +43,23 @@ class Signup extends React.Component {
       ["Password", "password", this.state.formData.password],
       ["Retype Password", "re_password", this.state.formData.re_password],
     ];
+
+    let error;
+    if (this.props.error) {
+      error = Object.values(this.props.error)[0][0];
+    }
+
+    if (this.props.isAuthenticated) {
+      return <Redirect to="/" />;
+    }
+
+    if (this.props.signupSuccess) {
+      return <Redirect to="/login" />;
+    }
+
     return (
-      <div>
+      <Container>
+        <Error show={this.props.error !== null}>{error}</Error>
         <Form onSubmit={this.handleSubmit}>
           {inputObjects.map((inputObject) => {
             return (
@@ -70,9 +81,21 @@ class Signup extends React.Component {
           })}
           <input type="submit" value="Submit" />
         </Form>
-      </div>
+      </Container>
     );
   }
 }
 
-export default Signup;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  signupSuccess: state.auth.signupSuccess,
+  error: state.auth.signupError,
+});
+
+const mapDispachToProps = (dispatch) => {
+  return {
+    signup: (formData) => dispatch({ type: SIGNUP, payload: formData }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispachToProps)(Signup);
