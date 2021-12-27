@@ -16,6 +16,7 @@ class Signup extends React.Component {
         last_name: "",
         password: "",
         re_password: "",
+        shouldShowError: false,
       },
     };
   }
@@ -34,6 +35,12 @@ class Signup extends React.Component {
     e.preventDefault();
     this.props.signup(this.state.formData);
   };
+
+  handleCloseError = () => {
+    this.setState({
+      shouldShowError: false,
+    })
+  }
 
   render() {
     const inputObjects = [
