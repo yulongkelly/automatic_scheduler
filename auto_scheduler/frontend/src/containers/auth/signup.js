@@ -1,5 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
 
+import { SIGNUP } from "../../actions";
 import { Form, InputContainer } from "./style";
 
 class Signup extends React.Component {
@@ -29,14 +31,7 @@ class Signup extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
-    console.log(
-      this.state.formData.email,
-      this.state.formData.first_name,
-      this.state.formData.last_name,
-      this.state.formData.password,
-      this.state.formData.re_password
-    );
+    this.props.signup(this.state.formData)
   };
 
   render() {
@@ -75,4 +70,14 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+const mapDispachToProps = dispatch => {
+  return {
+    signup: (formData) => dispatch({type: SIGNUP, payload: formData})
+  }
+}
+
+export default connect(mapStateToProps, mapDispachToProps)(Signup);
