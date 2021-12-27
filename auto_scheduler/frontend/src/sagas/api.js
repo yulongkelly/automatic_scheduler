@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export const fetchSignup = async (body, config) => {
   try {
     // console.log(body, config);
@@ -9,9 +8,7 @@ export const fetchSignup = async (body, config) => {
       `http://127.0.0.1:8000/auth/users/`,
       body,
       config
-    )
-    console.log("after2")
-    console.log(response)
+    );
     return response;
   } catch (e) {
     throw e.response.data;

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import { SIGNUP } from "../../actions";
 import { Container, Form, InputContainer, Error } from "./style";
@@ -50,11 +50,11 @@ class Signup extends React.Component {
     }
 
     if (this.props.isAuthenticated) {
-      return <Redirect to="/" />;
+      return <Navigate to="/" />;
     }
 
     if (this.props.signupSuccess) {
-      return <Redirect to="/login" />;
+      return <Navigate to="/login" />;
     }
 
     return (
