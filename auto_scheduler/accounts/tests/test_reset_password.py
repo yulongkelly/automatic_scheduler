@@ -7,7 +7,7 @@ from rest_framework import status
 from djet import assertions
 from django.test.utils import override_settings
 from djoser.conf import settings as default_settings
-from django.conf import settings
+
 
 
 
@@ -50,12 +50,13 @@ class UserResetPasswordTest(
         new_user = {
             "uid": djoser.utils.encode_uid(user_acc.pk),
             "token": default_token_generator.make_token(user_acc),
-	        "new_password": "12345678wu",
+	        "new_password": "newpassword",
         }
         response = self.client.post(self.base_url, new_user)
 
         self.assert_status_equal(response, status.HTTP_200_OK)
         user_acc.refresh_from_db()
+        print(UserAccount.objects.get(email=user["email"]))
         self.assertTrue(user_acc.check_password(new_user["new_password"]))
         self.assert_emails_in_mailbox(0)
 
