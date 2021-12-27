@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { SIGNUP } from "../../actions";
-import { Form, InputContainer } from "./style";
+import { Container, Form, InputContainer, Error } from "./style";
 
 class Signup extends React.Component {
   constructor() {
@@ -31,7 +32,7 @@ class Signup extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.signup(this.state.formData)
+    this.props.signup(this.state.formData);
   };
 
   render() {
@@ -42,8 +43,23 @@ class Signup extends React.Component {
       ["Password", "password", this.state.formData.password],
       ["Retype Password", "re_password", this.state.formData.re_password],
     ];
+
+    let error;
+    if (this.props.error) {
+      error = Object.values(this.props.error)[0][0];
+    }
+
+    if (this.props.isAuthenticated) {
+      return <Redirect to="/" />;
+    }
+
+    if (this.props.signupSuccess) {
+      return <Redirect to="/login" />;
+    }
+
     return (
-      <div>
+      <Container>
+        <Error show={this.props.error !== null}>{error}</Error>
         <Form onSubmit={this.handleSubmit}>
           {inputObjects.map((inputObject) => {
             return (
@@ -65,19 +81,21 @@ class Signup extends React.Component {
           })}
           <input type="submit" value="Submit" />
         </Form>
-      </div>
+      </Container>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  signupSuccess: state.auth.signupSuccess,
+  error: state.auth.signupError,
 });
 
-const mapDispachToProps = dispatch => {
+const mapDispachToProps = (dispatch) => {
   return {
-    signup: (formData) => dispatch({type: SIGNUP, payload: formData})
-  }
-}
+    signup: (formData) => dispatch({ type: SIGNUP, payload: formData }),
+  };
+};
 
 export default connect(mapStateToProps, mapDispachToProps)(Signup);

@@ -19,18 +19,19 @@ function* signupAsync({ payload }) {
     re_password,
   });
 
+  let res;
+
   try {
-    console.log("hey")
-    const res = yield call(() => fetchSignup(body, config));
-    console.log(res.data)
+    res = yield call(() => fetchSignup(body, config));
+
     yield put({
       type: SIGNUP_SUCCESS,
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
     yield put({
       type: SIGNUP_FAIL,
+      payload: err,
     });
   }
 }

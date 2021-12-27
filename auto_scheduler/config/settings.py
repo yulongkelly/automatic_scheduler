@@ -88,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'auto_scheduler_backend',
         'USER': 'postgres',
-        'PASSWORD': '123456wu',
+        'PASSWORD': env('POSTGRES_PASSWORD'),
         # 'HOST': env('DB_URL') or 'mongodb://localhost:27017/yelp-camp',
         'HOST': 'localhost',
         'PORT': '5432'

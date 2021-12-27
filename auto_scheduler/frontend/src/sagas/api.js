@@ -14,6 +14,6 @@ export const fetchSignup = async (body, config) => {
     console.log(response)
     return response;
   } catch (e) {
-    console.log(e);
+    throw e.response.data;
   }
 };

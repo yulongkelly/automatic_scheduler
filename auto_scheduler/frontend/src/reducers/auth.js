@@ -1,19 +1,28 @@
-import {SIGNUP_SUCCESS} from '../actions'
+import { SIGNUP_FAIL, SIGNUP_SUCCESS } from "../actions";
 
 const initialState = {
-    isAuthenticated: null,
+  isAuthenticated: false,
+  signupError: null,
+  signupSuccess: false,
 };
 
 const reducer = (state = initialState, action) => {
-
-  switch(action.type) {
-      case SIGNUP_SUCCESS:
-          return {
-              ...state,
-              isAuthenticated: false,
-          }
-        default:
-            return state
+  const { type, payload } = action;
+  switch (action.type) {
+    case SIGNUP_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: false,
+        signupError: null,
+        signupSuccess: true,
+      };
+    case SIGNUP_FAIL:
+      return {
+        ...state,
+        signupError: payload,
+      };
+    default:
+      return state;
   }
 };
 
