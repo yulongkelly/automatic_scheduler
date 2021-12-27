@@ -8,30 +8,20 @@ from djet import assertions
 from django.test.utils import override_settings
 from djoser.conf import settings as default_settings
 
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> fa8878a81d8260b43d769cd386a650dc0f5d143e
 from accounts.models import UserAccount
 
 user = {
     "email": "autoschedulertest@gmail.com",
     # "first_name": "test",
 	# "last_name": "1"
-}
-<<<<<<< HEAD
+
 user_1 = {
     "email": "autoschedulertest@gmail.com",
 	"first_name": "test",
 	"last_name": "1",
 	"password": "12345678wu",
 	"re_password": "12345678wu"
-}
-=======
 
->>>>>>> fa8878a81d8260b43d769cd386a650dc0f5d143e
 # Create your tests here.
 class UserResetPasswordTest(
     APITestCase, 
