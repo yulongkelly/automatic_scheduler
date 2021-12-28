@@ -1,7 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
 
-import { ButtonContainer, ButtonLink, LinkText } from "../homepage/style";
-import { Form, InputContainer } from "./style";
+import { ButtonLink, LinkText } from "../homepage/style";
+import { Container, Form, InputContainer, Error } from "./style";
+import { LOGIN } from "../../actions";
 
 class Login extends React.Component {
   constructor() {
@@ -10,7 +13,7 @@ class Login extends React.Component {
     this.state = {
       formData: {
         email: "",
-        password: ""
+        password: "",
       },
     };
   }
@@ -27,20 +30,32 @@ class Login extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
-    console.log(
-      this.state.formData.email,
-      this.state.formData.password
-    );
+    this.props.login(this.state.formData);
   };
 
   render() {
+    let error;
+    if (this.props.error) {
+      error = Object.values(this.props.error)[0];
+    }
+
+    if (this.props.isAuthenticated) {
+      return <Navigate to="/" />;
+    }
+
+    if (this.props.signupSuccess) {
+      return <Navigate to="/login" />;
+    }
+
     const inputObjects = [
       ["Email", "email", this.state.formData.email],
       ["Password", "password", this.state.formData.password],
     ];
     return (
-      <div>
+      <Container>
+        <Error show={this.props.error !== null}>
+           {error}
+        </Error>
         <Form onSubmit={this.handleSubmit}>
           {inputObjects.map((inputObject) => {
             return (
@@ -62,17 +77,24 @@ class Login extends React.Component {
           })}
           <input type="submit" value="Submit" />
         </Form>
-        <ButtonContainer>
-            <ButtonLink href=''>
-                <LinkText>
-                Reset Password
-                </LinkText>
-            </ButtonLink>
-        </ButtonContainer>
-      </div>
+        <ButtonLink href="">
+          <LinkText>Reset Password</LinkText>
+        </ButtonLink>
+      </Container>
     );
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
+  error: state.auth.loginError,
+});
 
+const mapDispachToProps = (dispatch) => {
+  return {
+    login: (formData) => dispatch({ type: LOGIN, payload: formData }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispachToProps)(Login);
