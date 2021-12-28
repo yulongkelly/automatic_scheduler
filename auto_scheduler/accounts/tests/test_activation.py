@@ -14,7 +14,9 @@ from djoser.conf import settings as default_settings
 from accounts.models import UserAccount
 
 class ActivationViewTest(
-    APITestCase, assertions.EmailAssertionsMixin, assertions.StatusCodeAssertionsMixin
+    APITestCase, 
+    assertions.EmailAssertionsMixin, 
+    assertions.StatusCodeAssertionsMixin
 ):
     def setUp(self):
         self.base_url = "/auth/users/activation/"

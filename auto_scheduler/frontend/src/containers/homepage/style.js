@@ -29,6 +29,7 @@ export const ButtonLink = styled.a`
   border-radius: 10px;
   border: 1px solid;
   text-decoration: none;
+  color: black;
   &:visited {
     color: darkgoldenrod;
     filter: saturate(2);
