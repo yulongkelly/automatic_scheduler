@@ -167,7 +167,8 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'AUTH_TOKEN_CLASSES': (
         'rest_framework_simplejwt.tokens.AccessToken',
-    )
+    ),
+    'BLACKLIST_AFTER_ROTATION': False,
 }
 
 DJOSER = {

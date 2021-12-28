@@ -1,4 +1,15 @@
-import { ACTIVATION_FAIL, ACTIVATION_SUCCESS, LOGIN_FAIL, LOGIN_SUCCESS, SIGNUP_FAIL, SIGNUP_SUCCESS, USER_LOADED_FAIL, USER_LOADED_SUCCESS } from "../actions";
+import {
+  ACTIVATION_FAIL,
+  ACTIVATION_SUCCESS,
+  AUTHENTICATED_SUCCESS,
+  AUTHENTICATED_FAIL,
+  LOGIN_FAIL,
+  LOGIN_SUCCESS,
+  SIGNUP_FAIL,
+  SIGNUP_SUCCESS,
+  USER_LOADED_FAIL,
+  USER_LOADED_SUCCESS,
+} from "../actions";
 
 const initialState = {
   access: localStorage.getItem("access"),
@@ -14,6 +25,16 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (action.type) {
+    case AUTHENTICATED_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
+      };
+    case AUTHENTICATED_FAIL:
+      return {
+        ...state,
+        isAuthenticated: false,
+      };
     case SIGNUP_SUCCESS:
       return {
         ...state,
@@ -27,40 +48,40 @@ const reducer = (state = initialState, action) => {
         signupError: payload,
       };
     case LOGIN_SUCCESS:
-      localStorage.setItem("access", payload.access)
-      localStorage.setItem("refresh", payload.refresh)
+      localStorage.setItem("access", payload.access);
+      localStorage.setItem("refresh", payload.refresh);
       return {
         ...state,
-      }
+      };
     case LOGIN_FAIL:
       return {
         ...state,
         loginError: payload,
         user: null,
-      }
+      };
     case USER_LOADED_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
         loginError: null,
-        user: payload
-      }
+        user: payload,
+      };
     case USER_LOADED_FAIL:
       return {
         ...state,
         loginError: payload,
         user: null,
-      }
+      };
     case ACTIVATION_SUCCESS:
       return {
         ...state,
         verify: true,
-      }
+      };
     case ACTIVATION_FAIL:
       return {
         ...state,
         verify: false,
-      }
+      };
     default:
       return state;
   }
