@@ -46,4 +46,5 @@ export const Title = styled.h1`
   filter: saturate(1.5);
   font-family: 'Dancing Script';
   font-size: 60px;
+  margin-bottom: 10%;
 `;
