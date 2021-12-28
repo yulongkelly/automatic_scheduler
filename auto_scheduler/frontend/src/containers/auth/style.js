@@ -7,6 +7,10 @@ export const Container = styled.div`
   height: 100vh;
   flex-direction: column;
   font-size: 25px;
+  background-image: url(${props => props.img});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 `;
 
 export const Form = styled.form`
@@ -14,10 +18,26 @@ export const Form = styled.form`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 15% 10%;
+  border-radius: 20px;
+  background-color: ${props => props.color};
+  color: darkgoldenrod;
 `;
 
 export const InputContainer = styled.div`
   margin-bottom: 10px;
+  width: 100%;
+
+  label {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  input {
+    height: 25px;
+    margin-left: 10px;
+    flex-grow: 1;
+  }
 `;
 
 export const Error = styled.div`
