@@ -12,6 +12,7 @@ import {
   ACTIVATE,
   ACTIVATION_SUCCESS,
   ACTIVATION_FAIL,
+  LOGOUT,
 } from "../actions";
 import { fetchLogin, fetchSignup, fetchActivate, fetchLoadUser } from "./api";
 
@@ -133,8 +134,15 @@ function* activate({ payload }) {
   }
 }
 
+function* logout() {
+  yield put({
+    type: LOGOUT
+});
+}
+
 export default function* watchActions() {
   yield takeLatest(LOGIN, loginAsync);
   yield takeLatest(SIGNUP, signupAsync);
   yield takeLatest(ACTIVATE, activate);
+  yield takeLatest(LOGOUT, logout)
 }
