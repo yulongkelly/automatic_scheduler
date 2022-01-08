@@ -9,7 +9,7 @@ export const NavbarContainer = styled.nav`
   align-items: center;
   top: 0;
   z-index: 255;
-  background: rgd(255, 255, 255, 0.5);
+  background: #B5B5B5;
 `;
 
 export const NavManu = styled.ul`
