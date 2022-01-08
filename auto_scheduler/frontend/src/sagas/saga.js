@@ -13,6 +13,7 @@ import {
   ACTIVATION_SUCCESS,
   ACTIVATION_FAIL,
   LOGOUT,
+  LOGOUT_SUCCESS,
   AUTHENTICATE,
   AUTHENTICATED_SUCCESS,
   AUTHENTICATED_FAIL,
@@ -139,7 +140,7 @@ function* activate({ payload }) {
 
 function* logout() {
   yield put({
-    type: LOGOUT,
+    type: LOGOUT_SUCCESS,
   });
 }
 
