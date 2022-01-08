@@ -1,9 +1,11 @@
 import {
   ACTIVATION_FAIL,
   ACTIVATION_SUCCESS,
+  LOGOUT,
+  AUTHENTICATED_SUCCESS,
+  AUTHENTICATED_FAIL,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
-  LOGOUT,
   SIGNUP_FAIL,
   SIGNUP_SUCCESS,
   USER_LOADED_FAIL,
@@ -24,6 +26,16 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (action.type) {
+    case AUTHENTICATED_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
+      };
+    case AUTHENTICATED_FAIL:
+      return {
+        ...state,
+        isAuthenticated: false,
+      };
     case SIGNUP_SUCCESS:
       return {
         ...state,

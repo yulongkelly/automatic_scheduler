@@ -13,8 +13,17 @@ import {
   ACTIVATION_SUCCESS,
   ACTIVATION_FAIL,
   LOGOUT,
+  AUTHENTICATE,
+  AUTHENTICATED_SUCCESS,
+  AUTHENTICATED_FAIL,
 } from "../actions";
-import { fetchLogin, fetchSignup, fetchActivate, fetchLoadUser } from "./api";
+import {
+  fetchLogin,
+  fetchSignup,
+  fetchActivate,
+  fetchLoadUser,
+  fetchAuthenticate,
+} from "./api";
 
 function* signupAsync({ payload }) {
   const { email, first_name, last_name, password, re_password } = payload;
@@ -78,7 +87,6 @@ function* loginAsync({ payload }) {
 
 function* loadUser() {
   if (localStorage.getItem("access")) {
-    console.log(localStorage.getItem("access"));
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -87,18 +95,14 @@ function* loadUser() {
       },
     };
 
-    console.log(config)
-
     try {
       const res = yield call(() => fetchLoadUser(config));
-      console.log("res: ", res);
 
       yield put({
         type: USER_LOADED_SUCCESS,
         payload: res.data,
       });
     } catch (err) {
-      console.log("error: ", err);
       yield put({
         type: USER_LOADED_FAIL,
       });
@@ -127,7 +131,6 @@ function* activate({ payload }) {
       type: ACTIVATION_SUCCESS,
     });
   } catch (err) {
-    console.log(err);
     yield put({
       type: ACTIVATION_FAIL,
     });
@@ -138,6 +141,45 @@ function* logout() {
   yield put({
     type: LOGOUT
 });
+ 
+function* checkAuthenticated() {
+  console.log("hi")
+  if (localStorage.getItem("access")) {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    };
+
+    const body = JSON.stringify({ token: localStorage.getItem("access") });
+
+    try {
+      const res = yield call(() => fetchAuthenticate(body, config));
+      // console.log("code: ", res.data)
+
+      if (res.data.code !== "token_not_valid") {
+        yield put({
+          type: AUTHENTICATED_SUCCESS,
+        });
+
+        yield loadUser();
+      } else {
+        yield put({
+          type: AUTHENTICATED_FAIL,
+        });
+      }
+    } catch (err) {
+      console.log("err: ", err)
+      yield put({
+        type: AUTHENTICATED_FAIL,
+      });
+    }
+  } else {
+    yield put({
+      type: AUTHENTICATED_FAIL,
+    });
+  }
 }
 
 export default function* watchActions() {
@@ -145,4 +187,5 @@ export default function* watchActions() {
   yield takeLatest(SIGNUP, signupAsync);
   yield takeLatest(ACTIVATE, activate);
   yield takeLatest(LOGOUT, logout)
+  yield takeLatest(AUTHENTICATE, checkAuthenticated);
 }

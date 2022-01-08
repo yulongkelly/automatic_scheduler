@@ -35,7 +35,7 @@ export const fetchLoadUser = async (config) => {
 
 export const fetchActivate = async (body, config) => {
   try {
-    const response = axios.post(
+    const response = await axios.post(
       `${API_URL}/auth/users/activation/`,
       body,
       config
@@ -45,3 +45,17 @@ export const fetchActivate = async (body, config) => {
     throw e.response.data;
   }
 };
+
+export const fetchAuthenticate = async (body, config) => {
+  try {
+    const response = await axios.post(
+      `${API_URL}/auth/jwt/verify/`,
+      body,
+      config
+    );
+    return response;
+  } catch(e) {
+    // console.log(e)
+    throw e.response.data
+  }
+}

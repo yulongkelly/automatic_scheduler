@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
-import NavBar from '../components/navbar'
+import { AUTHENTICATE } from "../actions";
 
-const Layout = (props) => {
-    return (
-        <div>
-            <NavBar/>
-            {props.children}
-        </div>
-    )
-}
- 
-export default Layout;
+const Layout = ({ checkAuthenticated, children }) => {
+  useEffect(() => {
+    checkAuthenticated();
+  }, []);
+
+  return <div>{children}</div>;
+};
+
+const mapDispachToProps = (dispatch) => {
+  return {
+    checkAuthenticated: () => dispatch({ type: AUTHENTICATE }),
+  };
+};
+
+export default connect(null, mapDispachToProps)(Layout);
