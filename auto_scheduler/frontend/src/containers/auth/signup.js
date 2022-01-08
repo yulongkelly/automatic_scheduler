@@ -4,6 +4,8 @@ import { Navigate } from "react-router-dom";
 
 import { SIGNUP } from "../../actions";
 import { Container, Form, InputContainer, Error } from "./style";
+import backgound from '../../static/signupbackground.jpg'
+
 
 class Signup extends React.Component {
   constructor() {
@@ -16,6 +18,7 @@ class Signup extends React.Component {
         last_name: "",
         password: "",
         re_password: "",
+        shouldShowError: false,
       },
     };
   }
@@ -34,6 +37,12 @@ class Signup extends React.Component {
     e.preventDefault();
     this.props.signup(this.state.formData);
   };
+
+  handleCloseError = () => {
+    this.setState({
+      shouldShowError: false,
+    })
+  }
 
   render() {
     const inputObjects = [
@@ -58,14 +67,14 @@ class Signup extends React.Component {
     }
 
     return (
-      <Container>
+      <Container img={backgound}>
         <Error show={this.props.error !== null}>{error}</Error>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} color={"rgb(255,182,193, 0.5)"}>
           {inputObjects.map((inputObject) => {
             return (
               <InputContainer>
                 <label>
-                  {inputObject[0]}:
+                  <span>{inputObject[0]}:</span>
                   <input
                     type={
                       inputObject[1].includes("password") ? "password" : "text"

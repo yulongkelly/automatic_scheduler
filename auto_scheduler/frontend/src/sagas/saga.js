@@ -12,6 +12,7 @@ import {
   ACTIVATE,
   ACTIVATION_SUCCESS,
   ACTIVATION_FAIL,
+  LOGOUT,
   AUTHENTICATE,
   AUTHENTICATED_SUCCESS,
   AUTHENTICATED_FAIL,
@@ -136,6 +137,11 @@ function* activate({ payload }) {
   }
 }
 
+function* logout() {
+  yield put({
+    type: LOGOUT
+});
+ 
 function* checkAuthenticated() {
   console.log("hi")
   if (localStorage.getItem("access")) {
@@ -180,5 +186,6 @@ export default function* watchActions() {
   yield takeLatest(LOGIN, loginAsync);
   yield takeLatest(SIGNUP, signupAsync);
   yield takeLatest(ACTIVATE, activate);
+  yield takeLatest(LOGOUT, logout)
   yield takeLatest(AUTHENTICATE, checkAuthenticated);
 }

@@ -1,10 +1,12 @@
 import React from "react";
+
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 
-import { ButtonLink, LinkText } from "../homepage/style";
+import { ButtonContainer, ButtonLink, LinkText } from "../homepage/style";
 import { Container, Form, InputContainer, Error } from "./style";
 import { LOGIN } from "../../actions";
+import backgound from "../../static/loginbackground.jpg";
 
 class Login extends React.Component {
   constructor() {
@@ -52,11 +54,12 @@ class Login extends React.Component {
       ["Password", "password", this.state.formData.password],
     ];
     return (
-      <Container>
+      <Container img={backgound}>
         <Error show={this.props.error !== null}>
            {error}
         </Error>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} color={"rgb(173, 216, 230, 0.5)"}>
+
           {inputObjects.map((inputObject) => {
             return (
               <InputContainer>
@@ -77,13 +80,16 @@ class Login extends React.Component {
           })}
           <input type="submit" value="Submit" />
         </Form>
-        <ButtonLink href="">
-          <LinkText>Reset Password</LinkText>
-        </ButtonLink>
+        <ButtonContainer>
+          <ButtonLink href="">
+            <LinkText>Reset Password</LinkText>
+          </ButtonLink>
+        </ButtonContainer>
       </Container>
     );
   }
 }
+
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
