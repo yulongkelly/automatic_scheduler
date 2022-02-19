@@ -10,9 +10,9 @@ import {
   DesignLinkContainer,
   Img
 } from "./style";
-import background1 from "../../static/homebackground.png";
-import background2 from "../../static/homebackground2.png";
-import arrow from "../../static/arrow.png";
+import background1 from "./../../static/homebackground.png";
+import background2 from "./../../static/homebackground2.png";
+import arrow from "./../../static/arrow.png";
 
 class HomePage extends React.Component {
   render() {
