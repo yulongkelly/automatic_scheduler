@@ -7,7 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, "./static/frontend"),
     filename: "[name].js",
   },
-  module: {
+  module: {   
     rules: [
       {
         test: /\.js$/,

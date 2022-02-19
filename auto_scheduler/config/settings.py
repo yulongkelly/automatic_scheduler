@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import environ
 from datetime import timedelta
+import os
 
 env = environ.Env()
 environ.Env.read_env()
@@ -90,7 +91,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': env('POSTGRES_PASSWORD'),
         # 'HOST': env('DB_URL') or 'mongodb://localhost:27017/yelp-camp',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432'
     }
 }
@@ -193,5 +194,6 @@ DJOSER = {
     }
 }
 
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(" ")
 
 AUTH_USER_MODEL = 'accounts.UserAccount'
