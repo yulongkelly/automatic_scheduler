@@ -8,10 +8,10 @@ export const HomePageContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   height: 100vh;
-  background-image: url(${backgound});
+  background-image: url(${(props) => props.background});
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
+  background-position: ${(props) => props.position};
 `;
 
 export const ButtonContainer = styled.div`
@@ -19,6 +19,24 @@ export const ButtonContainer = styled.div`
   width: 100%;
   justify-content: space-around;
 `;
+
+export const DesignLinkContainer = styled.div`
+  border: 1px black solid;
+  padding: 50px 100px;
+  border-radius: 50%;
+  position: absolute;
+  right: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
+  background: lightgrey;
+`;
+
+export const Img = styled.img`
+  width: 100px;
+  cursor: pointer;
+`
 
 export const ButtonLink = styled.a`
   color: darkgoldenrod;
@@ -44,7 +62,7 @@ export const LinkText = styled.h5`
 export const Title = styled.h1`
   color: #fafad2;
   filter: saturate(1.5);
-  font-family: 'Dancing Script';
+  font-family: "Dancing Script";
   font-size: 60px;
   margin-bottom: 10%;
 `;

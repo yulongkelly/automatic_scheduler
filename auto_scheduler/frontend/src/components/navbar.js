@@ -15,8 +15,7 @@ const NavBar = ({ isAuthenticated, logout }) => {
   const navigate = useNavigate();
 
   const handleOnClick = () => {
-    logout();
-    return navigate("/");
+    setTimeout(() => logout(), navigate("/"))
   };
 
   return (

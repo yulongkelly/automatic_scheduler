@@ -13,6 +13,7 @@ import {
   ACTIVATION_SUCCESS,
   ACTIVATION_FAIL,
   LOGOUT,
+  LOGOUT_SUCCESS,
   AUTHENTICATE,
   AUTHENTICATED_SUCCESS,
   AUTHENTICATED_FAIL,
@@ -139,11 +140,12 @@ function* activate({ payload }) {
 
 function* logout() {
   yield put({
-    type: LOGOUT
-});
- 
+    type: LOGOUT_SUCCESS,
+  });
+}
+
 function* checkAuthenticated() {
-  console.log("hi")
+  console.log("hi");
   if (localStorage.getItem("access")) {
     const config = {
       headers: {
@@ -170,7 +172,7 @@ function* checkAuthenticated() {
         });
       }
     } catch (err) {
-      console.log("err: ", err)
+      console.log("err: ", err);
       yield put({
         type: AUTHENTICATED_FAIL,
       });
@@ -186,6 +188,6 @@ export default function* watchActions() {
   yield takeLatest(LOGIN, loginAsync);
   yield takeLatest(SIGNUP, signupAsync);
   yield takeLatest(ACTIVATE, activate);
-  yield takeLatest(LOGOUT, logout)
+  yield takeLatest(LOGOUT, logout);
   yield takeLatest(AUTHENTICATE, checkAuthenticated);
 }

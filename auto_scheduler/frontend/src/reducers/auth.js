@@ -1,7 +1,7 @@
 import {
   ACTIVATION_FAIL,
   ACTIVATION_SUCCESS,
-  LOGOUT,
+  LOGOUT_SUCCESS,
   AUTHENTICATED_SUCCESS,
   AUTHENTICATED_FAIL,
   LOGIN_FAIL,
@@ -83,7 +83,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         verify: false,
       };
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       localStorage.removeItem("access");
       localStorage.removeItem("refresh");
       return {
