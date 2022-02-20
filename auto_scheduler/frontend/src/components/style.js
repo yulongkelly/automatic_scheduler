@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const NavbarContainer = styled.nav`
   height: 80px;
   display: flex;
-  position: absolute;
   width: 100%;
   align-items: center;
   top: 0;

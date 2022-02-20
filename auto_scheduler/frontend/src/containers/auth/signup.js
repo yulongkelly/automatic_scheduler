@@ -55,7 +55,7 @@ class Signup extends React.Component {
 
     let error;
     if (this.props.error) {
-      error = Object.values(this.props.error)[0][0];
+      error = Object.values(this.props.error)[0];
     }
 
     if (this.props.isAuthenticated) {
